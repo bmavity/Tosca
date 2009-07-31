@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tosca.Web", "Tosca.Web\Tosca.Web.csproj", "{A863EBC9-772C-4E62-AF74-6E503CA0EDB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tosca.Core", "Tosca.Core\Tosca.Core.csproj", "{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tosca.Core.Tests", "Tosca.Core.Tests\Tosca.Core.Tests.csproj", "{F13EA649-7398-4D30-B717-ACAC4C70F363}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A863EBC9-772C-4E62-AF74-6E503CA0EDB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A863EBC9-772C-4E62-AF74-6E503CA0EDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A863EBC9-772C-4E62-AF74-6E503CA0EDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A863EBC9-772C-4E62-AF74-6E503CA0EDB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

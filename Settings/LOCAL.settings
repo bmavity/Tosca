@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project name="Settings">
+  <property name="environment" value="LOCAL" />
+  <property name="machine" value="localhost" />
+  <property name="database.server" value="(local)" />
+  <property name="database.name" value="tosca" />
+  <property name="log.level" value="INFO" />
+  
+  <!-- IIS related settings for web site -->
+  <property name="web.folder" value="c:\tosca.deploy.web" />
+  <property name="iis.debug" value="true" />
+
+  <!-- Database Deployment -->
+  <property name="dirs.db" value="..\..\db" />
+  <property name="database.action" value="Create" />
+
+  <!-- connectionStrings.config values -->
+  <property name="db.appname" value="Application Name=Tosca;" />
+  <property name="db.lifetime" value="Connection Lifetime=300;" />
+  <property name="db.credentials" value="Integrated Security=SSPI;" />
+
+  <property name="db.suffix" value="${db.appname}${db.lifetime}${db.credentials}" />
+
+  <property name="db.default" value="Server=(local);" />
+  <property name="db.client" value="Server=(local);" />
+
+  <property name="connectionString.default" value="Database=Tosca;${db.default}${db.suffix}" />
+  <property name="connectionString.client" value="Database=Tosca;${db.client}${db.suffix}" />
+
+  <property name="nhibernate.dialect" value="NHibernate.Dialect.MsSql2005Dialect" />
+
+  <!-- Castle Service Locators -->
+  <property name="orm.websitesConfigurationStore" value="${'${orm.websitesConfigurationStore}'}" />
+</project>
