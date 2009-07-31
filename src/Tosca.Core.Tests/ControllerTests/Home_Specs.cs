@@ -13,8 +13,8 @@
 namespace Tosca.Core.Tests.ControllerTests
 {
     using System.Web.Mvc;
-    using Controllers;
     using NUnit.Framework;
+    using Web.Controllers;
 
     [TestFixture]
     public class Calling_actions_on_the_home_controller

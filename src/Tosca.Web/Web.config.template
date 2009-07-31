@@ -155,8 +155,8 @@
     <httpModules>
       <add name="ScriptModule" type="System.Web.Handlers.ScriptModule, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
       <add name="UrlRoutingModule" type="System.Web.Routing.UrlRoutingModule, System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
-      <add name="PerformanceModule" type="Tosca.Core.HttpModules.PerformanceModule, Tosca.Core"/>
-      <add name="CompressionModule" type="Tosca.Core.HttpModules.HttpCompressionModule, Tosca.Core"/>
+      <add name="PerformanceModule" type="Tosca.Core.Web.HttpModules.PerformanceModule, Tosca.Core"/>
+      <add name="CompressionModule" type="Tosca.Core.Web.HttpModules.HttpCompressionModule, Tosca.Core"/>
     </httpModules>
 
   </system.web>

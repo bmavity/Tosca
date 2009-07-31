@@ -19,6 +19,7 @@ namespace Tosca.Core.HttpModules
     using System.Net;
     using System.Web;
     using System.Web.Caching;
+    using Web.HttpModules;
 
     public class StaticFileHandler :
         IHttpAsyncHandler

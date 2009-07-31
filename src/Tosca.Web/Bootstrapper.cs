@@ -24,7 +24,7 @@ namespace Tosca.Web
         {
             BootstrapLogger(application);
 
-            new Core.Bootstrapper().Bootstrap();
+            new Core.Web.Bootstrapper().Bootstrap();
 
             RegisterRoutes(RouteTable.Routes);
         }
