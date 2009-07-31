@@ -51,6 +51,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\references\log4net\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Magnum, Version=0.1.0.329, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\references\Magnum\Magnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Magnum.Infrastructure, Version=0.1.0.329, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\references\Magnum\Magnum.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit, Version=0.5.0.1960, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\references\MassTransit\MassTransit.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit.Infrastructure, Version=0.5.0.1960, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\references\MassTransit\MassTransit.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\references\ASP.NET MVC\Microsoft.Web.Mvc.dll</HintPath>
@@ -103,6 +119,8 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>SolutionVersion.cs</Link>
     </Compile>
+    <Compile Include="Messages\RequestReservation.cs" />
+    <Compile Include="Model\Reservation.cs" />
     <Compile Include="Web\Bootstrapper.cs" />
     <Compile Include="Web\Controllers\AccountController.cs" />
     <Compile Include="Web\Controllers\HomeController.cs" />
