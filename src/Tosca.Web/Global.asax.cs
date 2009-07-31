@@ -19,7 +19,7 @@ namespace Tosca.Web
     {
         protected void Application_Start()
         {
-            new Bootstrapper().Bootstrap(this);
+            Bootstrapper.Bootstrap(this);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Tosca.Web
 
     public class Bootstrapper
     {
-        public void Bootstrap(MvcApplication application)
+        public static void Bootstrap(MvcApplication application)
         {
             BootstrapLogger(application);
 
