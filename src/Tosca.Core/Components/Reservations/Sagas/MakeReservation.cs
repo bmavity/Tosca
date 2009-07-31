@@ -10,21 +10,20 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Tosca.Core.Model
+namespace Tosca.Core.Components.Reservations.Sagas
 {
     using System;
-    using FluentNHibernate.Mapping;
     using Magnum.StateMachine;
     using MassTransit;
     using MassTransit.Saga;
     using MassTransit.Services.Timeout.Messages;
     using Messages;
 
-    public class Reservation :
-        SagaStateMachine<Reservation>,
+    public class MakeReservation :
+        SagaStateMachine<MakeReservation>,
         ISaga
     {
-        static Reservation()
+        static MakeReservation()
         {
             Define(() =>
                 {
@@ -69,13 +68,11 @@ namespace Tosca.Core.Model
         private const int RequestTimeout = 0;
     }
 
-    public class ReservationClassMap :
-        ClassMap<Reservation>
+    public class MakeReservationClassMap :
+        SagaClassMapBase<MakeReservation>
     {
-        private ReservationClassMap()
+        public MakeReservationClassMap()
         {
-            Id(x => x.CorrelationId);
-
             Map(x => x.Name);
             Map(x => x.NumberOfGuests);
         }
