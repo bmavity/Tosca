@@ -1,0 +1,47 @@
+<project name="deploy" default="go">
+  <include buildfile="${file.settings}" if="${file::exists(file.settings)}" />
+
+  <property name="dotnet" value="c:/windows/Microsoft.NET/Framework/v2.0.50727" overwrite="false" />
+
+
+  <target name="go" depends="verify_settings, clean_web_folder, copy_web, compile_web" />
+
+  <target name="verify_settings">
+    <if unless="true" test="${property::exists('web.folder')}">
+      <fail message="No web.folder property exists" />
+    </if>
+  </target>
+
+  <target name="clean_web_folder">
+    <echo message="Cleaning web folder contents from ${web.folder}" />
+    <delete>
+      <fileset basedir="${web.folder}">
+        <include name="**/*" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="copy_web">
+    <echo message="Copying the web site folder to ${web.folder}."/>
+    <copy todir="${web.folder}">
+      <fileset basedir="${dirs.drop}\_PublishedWebSites\RelayHealth.ClaimVision.Web">
+        <include name="**/*" />
+      </fileset>
+    </copy>
+    <copy file="${dirs.drop}/Configurations/${environment}.connectionStrings.config" 
+      tofile="${web.folder}/connectionStrings.config" overwrite="true" />
+    <copy file="${dirs.drop}/Configurations/${environment}.Web.config" 
+      tofile="${web.folder}/Web.config" overwrite="true" />
+  </target>
+
+  <target name="compile_web">
+    <if test="${environment!='LOCAL'}">
+      <echo message="Precompiling web site" />
+      <exec basedir="." 
+            program="${dotnet}/aspnet_compiler.exe" 
+            commandline="-nologo -c -v / -p ${web.folder}"
+            workingdir="."
+            failonerror="true" />
+    </if>
+  </target>
+</project>

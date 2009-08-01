@@ -2,8 +2,7 @@
 
 SET DIR=%~d0%~p0%
 
-SET file.settings="%DIR%..\..\Settings\${environment}.settings"
+SET file.settings="%DIR%..\Settings\${environment}.settings"
+SET dirs.drop="%DIR%.."
 
-::your deployment settings here
-
-pause
+"%DIR%nant\nant.exe" /f:"%DIR%\web.deploy" -D:file.settings=%file.settings% -D:dirs.drop=%dirs.drop%
