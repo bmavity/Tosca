@@ -30,6 +30,8 @@ namespace Tosca.Core.Web.Controllers
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
 
+			ViewData["Title"] = _settings.SiteTitle;
+
             return View();
         }
 

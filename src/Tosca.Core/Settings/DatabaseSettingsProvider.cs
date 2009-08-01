@@ -12,99 +12,114 @@
 // specific language governing permissions and limitations under the License.
 namespace Tosca.Core.Settings
 {
-    using System;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Linq.Expressions;
-    using Data;
-    using Model.Settings;
-    using NHibernate.Linq;
+	using System;
+	using System.ComponentModel;
+	using System.Linq;
+	using Data;
+	using Model.Settings;
+	using NHibernate.Linq;
 
-    public class DatabaseSettingsProvider :
-        ISettingsProvider
-    {
-        private readonly IObjectCache _objectCache;
-        private readonly ISharedDataContext _dataContext;
+	public class DatabaseSettingsProvider :
+		ISettingsProvider
+	{
+		private readonly IObjectCache _objectCache;
+		private readonly ISharedDataContext _dataContext;
 
-        public DatabaseSettingsProvider(ISharedDataContext dataContext, IObjectCache objectCache)
-        {
-            _dataContext = dataContext;
-            _objectCache = objectCache;
-        }
+		public DatabaseSettingsProvider(ISharedDataContext dataContext, IObjectCache objectCache)
+		{
+			_dataContext = dataContext;
+			_objectCache = objectCache;
+		}
 
-        public string GetValue(ISettingsContext context, string key)
-        {
-            Setting setting = GetSetting(context, key);
-            if (setting != null)
-                return setting.Value ?? "";
+		public string GetValue(ISettingsContext context, string key)
+		{
+			return GetValue(context, key, () => null);
+		}
 
-            return null;
-        }
+		public T GetValue<T>(ISettingsContext context, string key)
+		{
+			string value = GetValue(context, key);
 
-        public T GetValue<T>(ISettingsContext context, string key)
-        {
-            string value = GetValue(context, key);
+			if (string.IsNullOrEmpty(value))
+				throw new ArgumentException("The [" + key + "] setting was not found for " + context);
 
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentException("The [" + key + "] setting was not found for " + context);
+			return ConvertValue<T>(key, value);
+		}
 
-            return ConvertValue<T>(key, value);
-        }
+		public T GetValue<T>(ISettingsContext context, string key, T defaultValue)
+		{
+			string value = GetValue(context, key, () => new Setting
+				{
+					ClientId = context.ClientId,
+					Key = key,
+					Value = defaultValue.ToString()
+				});
 
-        public T GetValue<T>(ISettingsContext context, string key, T defaultValue)
-        {
-            string value = GetValue(context, key);
+			return ConvertValue<T>(key, value);
+		}
 
-            if (string.IsNullOrEmpty(value))
-                return defaultValue;
+		public T GetValue<T>(ISettingsContext context, string key, Func<string, T> valueConverter)
+		{
+			string value = GetValue(context, key);
 
-            return ConvertValue<T>(key, value);
-        }
+			if (string.IsNullOrEmpty(value))
+				throw new ArgumentException("The [" + key + "] setting was not found for " + context);
 
-        public T GetValue<T>(ISettingsContext context, string key, Func<string, T> valueConverter)
-        {
-            string value = GetValue(context, key);
+			return valueConverter(value);
+		}
 
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentException("The [" + key + "] setting was not found for " + context);
+		public T GetValue<T>(ISettingsContext context, string key, Func<string, T> valueConverter, T defaultValue)
+		{
+			string value = GetValue(context, key, () => new Setting
+				{
+					ClientId = context.ClientId,
+					Key = key,
+					Value = defaultValue.ToString()
+				});
 
-            return valueConverter(value);
-        }
+			return valueConverter(value);
+		}
 
-        private Setting GetSetting(ISettingsContext context, string key)
-        {
-            var cacheKey = context.GetCacheKey<Setting>(key);
+		private string GetValue(ISettingsContext context, string key, Func<Setting> defaultValue)
+		{
+			Setting setting = GetSetting(context, key, defaultValue);
+			if (setting != null)
+				return setting.Value;
 
-            return GetSetting(x => x.ClientId == context.ClientId && x.Key == key, cacheKey);
-        }
+			return null;
+		}
 
-        private T GetSetting<T>(Expression<Func<T, bool>> expression, ICacheKey<T> cacheKey)
-            where T : class
-        {
-            var item = _objectCache.Get(cacheKey);
-            if (item != null)
-                return item;
+		private Setting GetSetting(ISettingsContext context, string key, Func<Setting> defaultValue)
+		{
+			var cacheKey = context.GetCacheKey<Setting>(key);
 
-            item = _dataContext.Session.Linq<T>()
-                .Where(expression)
-                .FirstOrDefault();
+			var item = _objectCache.Get(cacheKey);
+			if (item != null)
+				return item;
 
-            if (item != null)
-                _objectCache.Set(cacheKey, item);
+			item = _dataContext.Session.Linq<Setting>()
+				.Where(x => x.ClientId == context.ClientId && x.Key == key)
+				.FirstOrDefault();
 
-            return item;
-        }
+			if (item == null)
+				item = defaultValue();
 
-        private static T ConvertValue<T>(string key, string value)
-        {
-            var tc = TypeDescriptor.GetConverter(typeof (T));
+			if (item != null)
+				_objectCache.Set(cacheKey, item);
 
-            if (tc.CanConvertFrom(typeof (string)))
-            {
-                return (T) tc.ConvertFrom(value);
-            }
+			return item;
+		}
 
-            throw new InvalidOperationException("The [" + key + "] setting could not be converted to type: " + typeof (T).FullName);
-        }
-    }
+		private static T ConvertValue<T>(string key, string value)
+		{
+			var tc = TypeDescriptor.GetConverter(typeof (T));
+
+			if (tc.CanConvertFrom(typeof (string)))
+			{
+				return (T) tc.ConvertFrom(value);
+			}
+
+			throw new InvalidOperationException("The [" + key + "] setting could not be converted to type: " + typeof (T).FullName);
+		}
+	}
 }

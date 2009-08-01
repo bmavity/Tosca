@@ -30,5 +30,6 @@ namespace Tosca.Core.Settings
         T GetValue<T>(ISettingsContext context, string key);
         T GetValue<T>(ISettingsContext context, string key, T defaultValue);
         T GetValue<T>(ISettingsContext context, string key, Func<string, T> valueConverter);
+        T GetValue<T>(ISettingsContext context, string key, Func<string, T> valueConverter, T defaultValue);
     }
 }

@@ -50,13 +50,15 @@ namespace Tosca.Core.Model.Settings
 	{
 		public SettingMap()
 		{
+			WithTable("`Setting`");
+
 			UseCompositeId()
 				.WithKeyProperty(x => x.ClientId)
-				.WithKeyProperty(x => x.Key);
+				.WithKeyProperty(x => x.Key, "`Key`");
 
 			Map(x => x.ClientId);
-			Map(x => x.Key).WithLengthOf(128);
-			Map(x => x.Value).WithLengthOf(512);
+			Map(x => x.Key, "`Key`").WithLengthOf(128);
+			Map(x => x.Value, "`Value`").WithLengthOf(512);
 		}
 	}
 }

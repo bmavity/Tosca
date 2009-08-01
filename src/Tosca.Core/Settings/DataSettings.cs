@@ -12,25 +12,25 @@
 // specific language governing permissions and limitations under the License.
 namespace Tosca.Core.Settings
 {
-    using System;
+	using System;
 
-    public class DataSettings :
-        AbstractSettings,
-        IDataSettings
-    {
-        public DataSettings(ISettingsProvider provider)
-            : base(new SettingsContext(Guid.Empty, CacheLifespan), provider)
-        {
-        }
+	public class DataSettings :
+		AbstractSettings,
+		IDataSettings
+	{
+		public DataSettings(ISettingsProvider provider)
+			: base(new SettingsContext(Guid.Empty, CacheLifespan), provider)
+		{
+		}
 
-        public string DatabaseName
-        {
-            get { return Provider.GetValue(Context, "DatabaseName"); }
-        }
+		public string DatabaseName
+		{
+			get { return Provider.GetValue(Context, "DatabaseName", "Tosca"); }
+		}
 
-        public string ServerName
-        {
-            get { return Provider.GetValue(Context, "ServerName"); }
-        }
-    }
+		public string ServerName
+		{
+			get { return Provider.GetValue(Context, "ServerName", "(local)"); }
+		}
+	}
 }

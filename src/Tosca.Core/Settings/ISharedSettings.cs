@@ -17,5 +17,6 @@ namespace Tosca.Core.Settings
     public interface ISharedSettings
     {
         Uri SubscriptionServiceUri { get; }
+    	string SiteTitle { get; }
     }
 }

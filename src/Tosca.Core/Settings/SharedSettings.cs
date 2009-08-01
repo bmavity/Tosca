@@ -27,5 +27,10 @@ namespace Tosca.Core.Settings
         {
             get { return Provider.GetValue(Context, "SubscriptionServiceUri", x => new Uri(x)); }
         }
+
+        public string SiteTitle
+        {
+            get { return Provider.GetValue(Context, "SiteTitle", "Tosca"); }
+        }
     }
 }
