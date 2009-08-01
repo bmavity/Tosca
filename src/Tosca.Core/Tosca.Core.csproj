@@ -145,7 +145,7 @@
     <Compile Include="Data\SqlSharedDataContext.cs" />
     <Compile Include="Messages\RequestReservation.cs" />
     <Compile Include="Components\Reservations\Sagas\MakeReservation.cs" />
-    <Compile Include="Model\Configuration\ConfigurationSetting.cs" />
+    <Compile Include="Model\Settings\Setting.cs" />
     <Compile Include="Security\IUserContext.cs" />
     <Compile Include="Web\Bootstrapper.cs" />
     <Compile Include="Web\Controllers\AccountController.cs" />
@@ -155,6 +155,7 @@
     <Compile Include="Web\HttpModules\HttpCompressionModule.cs" />
     <Compile Include="Web\HttpModules\MimeMapping.cs" />
     <Compile Include="Web\HttpModules\PerformanceModule.cs" />
+    <Compile Include="Web\HttpModules\StructureMapHttpModule.cs" />
     <Compile Include="Web\HttpModules\StaticFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\StructureMapControllerFactory.cs" />

@@ -17,7 +17,7 @@ namespace Tosca.Core.Settings
     using System.Linq;
     using System.Linq.Expressions;
     using Data;
-    using Model.Configuration;
+    using Model.Settings;
     using NHibernate.Linq;
 
     public class DatabaseSettingsProvider :
@@ -34,9 +34,9 @@ namespace Tosca.Core.Settings
 
         public string GetValue(ISettingsContext context, string key)
         {
-            ConfigurationSetting configurationItem = GetConfigurationSetting(context, key);
-            if (configurationItem != null)
-                return configurationItem.Value ?? "";
+            Setting setting = GetSetting(context, key);
+            if (setting != null)
+                return setting.Value ?? "";
 
             return null;
         }
@@ -46,7 +46,7 @@ namespace Tosca.Core.Settings
             string value = GetValue(context, key);
 
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentException("No value found for configuration key " + key, "key");
+                throw new ArgumentException("The [" + key + "] setting was not found for " + context);
 
             return ConvertValue<T>(key, value);
         }
@@ -61,24 +61,24 @@ namespace Tosca.Core.Settings
             return ConvertValue<T>(key, value);
         }
 
-        public T GetValue<T>(ISettingsContext context, string key, Func<string, T> valueGenerator)
+        public T GetValue<T>(ISettingsContext context, string key, Func<string, T> valueConverter)
         {
             string value = GetValue(context, key);
 
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentException("No value found for configuration key " + key, "key");
+                throw new ArgumentException("The [" + key + "] setting was not found for " + context);
 
-            return valueGenerator(value);
+            return valueConverter(value);
         }
 
-        private ConfigurationSetting GetConfigurationSetting(ISettingsContext context, string key)
+        private Setting GetSetting(ISettingsContext context, string key)
         {
-            var cacheKey = context.GetCacheKey<ConfigurationSetting>(key);
+            var cacheKey = context.GetCacheKey<Setting>(key);
 
-            return GetConfigurationSetting(x => x.ClientId == context.ClientId && x.Key == key, cacheKey);
+            return GetSetting(x => x.ClientId == context.ClientId && x.Key == key, cacheKey);
         }
 
-        private T GetConfigurationSetting<T>(Expression<Func<T, bool>> expression, ICacheKey<T> cacheKey)
+        private T GetSetting<T>(Expression<Func<T, bool>> expression, ICacheKey<T> cacheKey)
             where T : class
         {
             var item = _objectCache.Get(cacheKey);
@@ -104,7 +104,7 @@ namespace Tosca.Core.Settings
                 return (T) tc.ConvertFrom(value);
             }
 
-            throw new InvalidOperationException("Could not convert configuration value " + key + " to " + typeof (T).FullName);
+            throw new InvalidOperationException("The [" + key + "] setting could not be converted to type: " + typeof (T).FullName);
         }
     }
 }

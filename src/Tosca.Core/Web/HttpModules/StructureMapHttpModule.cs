@@ -10,31 +10,27 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Tosca.Core.Settings
+namespace Tosca.Core.Web.HttpModules
 {
     using System;
-    using Data;
+    using System.Web;
+    using StructureMap.Pipeline;
 
-    public class SettingsContext :
-        ISettingsContext
+    public class StructureMapHttpModule :
+        IHttpModule
     {
-        public SettingsContext(Guid clientId, TimeSpan cacheLifespan)
+        public void Init(HttpApplication context)
         {
-            ClientId = clientId;
-            CacheLifespan = cacheLifespan;
+            context.EndRequest += OnEndRequest;
         }
 
-        public Guid ClientId { get; private set; }
-        public TimeSpan CacheLifespan { get; private set; }
-
-        public ICacheKey<T> GetCacheKey<T>(string key)
+        public void Dispose()
         {
-            return CacheKey<T>.Using(ClientId, key).For(CacheLifespan);
         }
 
-        public override string ToString()
+        private void OnEndRequest(object sender, EventArgs e)
         {
-            return string.Format("Client Id {0}", ClientId);
+            HttpContextBuildPolicy.DisposeAndClearAll();
         }
     }
 }
