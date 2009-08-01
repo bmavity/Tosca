@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <connectionStrings>
-  <add name="Default" connectionString="${connectionString.default}" providerName="System.Data.SqlClient"/>
+  <add name="Shared" connectionString="${connectionString.shared}" providerName="System.Data.SqlClient"/>
+  <add name="Client" connectionString="${connectionString.client}" providerName="System.Data.SqlClient"/>
 </connectionStrings>
