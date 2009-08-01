@@ -10,28 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Tosca.Core.Configuration
+namespace Tosca.Core.Settings
 {
     using System;
-    using Magnum.DateTimeExtensions;
+    using Data;
 
-    public abstract class AbstractSettings
+    public interface ISettingsContext
     {
-        protected AbstractSettings(ISettingsContext context, ISettingsProvider provider)
-        {
-            Context = context;
-            Provider = provider;
-        }
+        Guid ClientId { get; }
 
-        static AbstractSettings()
-        {
-            CacheLifespan = 30.Minutes();
-        }
-
-        protected ISettingsProvider Provider { get; private set; }
-
-        protected ISettingsContext Context { get; private set; }
-
-        protected static TimeSpan CacheLifespan { get; private set; }
+        ICacheKey<T> GetCacheKey<T>(string key);
     }
 }

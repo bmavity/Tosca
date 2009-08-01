@@ -15,12 +15,12 @@ using System.Security;
 
 [assembly: ComVisibleAttribute(false)]
 [assembly: CLSCompliantAttribute(true)]
-[assembly: AssemblyVersionAttribute("0.1.0.1")]
+[assembly: AssemblyVersionAttribute("0.1.0.8")]
 [assembly: AssemblyTitleAttribute("Tosca")]
 [assembly: AssemblyProductAttribute("Tosca")]
 [assembly: AssemblyDescriptionAttribute("For the exclusive use of Tosca Web Solutions.")]
 [assembly: AssemblyTrademarkAttribute("All rights reserved, Tosca Web Solutions")]
-[assembly: AssemblyFileVersionAttribute("0.1.0.1")]
+[assembly: AssemblyFileVersionAttribute("0.1.0.8")]
 [assembly: AssemblyCopyrightAttribute("Tosca Web Solutions, original author or authors")]
 [assembly: AssemblyCompanyAttribute("Tosca Web Solutions")]
 

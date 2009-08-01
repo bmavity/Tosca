@@ -10,22 +10,26 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Tosca.Core.Configuration
+namespace Tosca.Core.Settings
 {
     using System;
+    using Data;
 
-    public class SharedSettings :
-        AbstractSettings,
-        ISharedSettings
+    public class SettingsContext :
+        ISettingsContext
     {
-        public SharedSettings(ISettingsProvider provider)
-            : base(new SettingsContext(Guid.Empty, CacheLifespan), provider)
+        public SettingsContext(Guid clientId, TimeSpan cacheLifespan)
         {
+            ClientId = clientId;
+            CacheLifespan = cacheLifespan;
         }
 
-        public Uri SubscriptionServiceUri
+        public Guid ClientId { get; private set; }
+        public TimeSpan CacheLifespan { get; private set; }
+
+        public ICacheKey<T> GetCacheKey<T>(string key)
         {
-            get { return Provider.GetValue(Context, "SubscriptionServiceUri", x => new Uri(x)); }
+            return CacheKey<T>.Using(ClientId, key).For(CacheLifespan);
         }
     }
 }

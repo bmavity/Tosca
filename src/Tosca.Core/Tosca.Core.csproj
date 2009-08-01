@@ -120,17 +120,17 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Components\SagaClassMapBase.cs" />
-    <Compile Include="Configuration\AbstractSettings.cs" />
-    <Compile Include="Configuration\ClientSettings.cs" />
-    <Compile Include="Configuration\SettingsContext.cs" />
-    <Compile Include="Configuration\DatabaseSettingsProvider.cs" />
-    <Compile Include="Configuration\DataSettings.cs" />
-    <Compile Include="Configuration\IDataSettings.cs" />
-    <Compile Include="Configuration\SharedSettings.cs" />
-    <Compile Include="Configuration\IClientSettings.cs" />
-    <Compile Include="Configuration\ISharedSettings.cs" />
-    <Compile Include="Configuration\ISettingsContext.cs" />
-    <Compile Include="Configuration\ISettingsProvider.cs" />
+    <Compile Include="Settings\AbstractSettings.cs" />
+    <Compile Include="Settings\ClientSettings.cs" />
+    <Compile Include="Settings\SettingsContext.cs" />
+    <Compile Include="Settings\DatabaseSettingsProvider.cs" />
+    <Compile Include="Settings\DataSettings.cs" />
+    <Compile Include="Settings\IDataSettings.cs" />
+    <Compile Include="Settings\SharedSettings.cs" />
+    <Compile Include="Settings\IClientSettings.cs" />
+    <Compile Include="Settings\ISharedSettings.cs" />
+    <Compile Include="Settings\ISettingsContext.cs" />
+    <Compile Include="Settings\ISettingsProvider.cs" />
     <Compile Include="Data\AspNetCacheProvider.cs" />
     <Compile Include="Data\CacheKey.cs" />
     <Compile Include="Data\ICacheKey.cs" />

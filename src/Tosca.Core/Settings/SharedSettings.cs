@@ -10,10 +10,22 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Tosca.Core.Configuration
+namespace Tosca.Core.Settings
 {
-    public interface IClientSettings
+    using System;
+
+    public class SharedSettings :
+        AbstractSettings,
+        ISharedSettings
     {
-        string Something { get; }
+        public SharedSettings(ISettingsProvider provider)
+            : base(new SettingsContext(Guid.Empty, CacheLifespan), provider)
+        {
+        }
+
+        public Uri SubscriptionServiceUri
+        {
+            get { return Provider.GetValue(Context, "SubscriptionServiceUri", x => new Uri(x)); }
+        }
     }
 }

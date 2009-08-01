@@ -13,8 +13,8 @@
 namespace Tosca.Core.Data
 {
     using System.Data.SqlClient;
-    using Configuration;
     using NHibernate;
+    using Settings;
 
     public class SqlClientDataContext :
         SqlDataContext,
