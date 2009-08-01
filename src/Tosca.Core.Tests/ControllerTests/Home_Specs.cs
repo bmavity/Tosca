@@ -14,6 +14,8 @@ namespace Tosca.Core.Tests.ControllerTests
 {
     using System.Web.Mvc;
     using NUnit.Framework;
+    using Rhino.Mocks;
+    using Settings;
     using Web.Controllers;
 
     [TestFixture]
@@ -22,7 +24,7 @@ namespace Tosca.Core.Tests.ControllerTests
         [Test]
         public void Should_return_a_view_for_the_index()
         {
-            var controller = new HomeController();
+            var controller = new HomeController(MockRepository.GenerateMock<ISharedSettings>());
 
             var result = controller.Index();
 
@@ -32,7 +34,7 @@ namespace Tosca.Core.Tests.ControllerTests
         [Test]
         public void Should_return_a_view_for_the_about()
         {
-            var controller = new HomeController();
+            var controller = new HomeController(MockRepository.GenerateMock<ISharedSettings>());
 
             var result = controller.About();
 

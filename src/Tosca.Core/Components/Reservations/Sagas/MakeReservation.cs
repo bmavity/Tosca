@@ -51,7 +51,7 @@ namespace Tosca.Core.Components.Reservations.Sagas
         }
 
         public virtual Guid CorrelationId { get; set; }
-        public IServiceBus Bus { get; set; }
+        public virtual IServiceBus Bus { get; set; }
 
         public virtual string Name { get; set; }
         public virtual int NumberOfGuests { get; set; }
@@ -73,7 +73,7 @@ namespace Tosca.Core.Components.Reservations.Sagas
     {
         public MakeReservationClassMap()
         {
-            Map(x => x.Name);
+        	Map(x => x.Name).WithLengthOf(50);
             Map(x => x.NumberOfGuests);
         }
     }

@@ -12,28 +12,51 @@
 // specific language governing permissions and limitations under the License.
 namespace Tosca.Core.Model.Settings
 {
-    using System;
-    using FluentNHibernate.Mapping;
+	using System;
+	using FluentNHibernate.Mapping;
 
-    public class Setting
-    {
-        public virtual Guid ClientId { get; set; }
-        public virtual string Key { get; set; }
-        public virtual string Value { get; set; }
-    }
+	public class Setting
+	{
+		public virtual Guid ClientId { get; set; }
+		public virtual string Key { get; set; }
+		public virtual string Value { get; set; }
 
-    public class SettingMap :
-        ClassMap<Setting>
-    {
-        public SettingMap()
-        {
-            UseCompositeId()
-                .WithKeyProperty(x => x.ClientId)
-                .WithKeyProperty(x => x.Key);
+		public virtual bool Equals(Setting other)
+		{
+			if (ReferenceEquals(null, other)) return false;
+			if (ReferenceEquals(this, other)) return true;
+			return other.ClientId.Equals(ClientId) && Equals(other.Key, Key);
+		}
 
-            Map(x => x.ClientId);
-            Map(x => x.Key);
-            Map(x => x.Value);
-        }
-    }
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			if (obj.GetType() != typeof (Setting)) return false;
+			return Equals((Setting) obj);
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				return (ClientId.GetHashCode()*397) ^ (Key != null ? Key.GetHashCode() : 0);
+			}
+		}
+	}
+
+	public class SettingMap :
+		ClassMap<Setting>
+	{
+		public SettingMap()
+		{
+			UseCompositeId()
+				.WithKeyProperty(x => x.ClientId)
+				.WithKeyProperty(x => x.Key);
+
+			Map(x => x.ClientId);
+			Map(x => x.Key).WithLengthOf(128);
+			Map(x => x.Value).WithLengthOf(512);
+		}
+	}
 }

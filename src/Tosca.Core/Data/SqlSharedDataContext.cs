@@ -19,7 +19,9 @@ namespace Tosca.Core.Data
         SqlDataContext,
         ISharedDataContext
     {
-        private readonly ISqlConnectionFactory _connectionFactory;
+    	private const string ConnectionStringName = "Shared";
+
+    	private readonly ISqlConnectionFactory _connectionFactory;
 
         public SqlSharedDataContext(ISqlConnectionFactory connectionFactory, ISessionFactory sessionFactory)
             : base(sessionFactory)
@@ -29,7 +31,7 @@ namespace Tosca.Core.Data
 
         protected override SqlConnection GetConnection()
         {
-            return _connectionFactory.GetConnection("Security");
+            return _connectionFactory.GetConnection(ConnectionStringName);
         }
     }
 }

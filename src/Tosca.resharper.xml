@@ -282,8 +282,12 @@ specific language governing permissions and limitations under the License.
   <Naming2>
     <ExceptionName IsNull="False">
     </ExceptionName>
-    <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent" />
-    <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />
+    <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent">
+      <ExtraRule Prefix="" Suffix="" Style="Aa_bb" />
+    </PredefinedRule>
+    <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces">
+      <ExtraRule Prefix="" Suffix="" Style="Aa_bb" />
+    </PredefinedRule>
     <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
     <PredefinedRule Inspect="True" Prefix="T" Suffix="" Style="AaBb" ElementKind="TypeParameters" />
     <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Locals" />
@@ -302,5 +306,10 @@ specific language governing permissions and limitations under the License.
     <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateStaticReadonly">
       <ExtraRule Prefix="_" Suffix="" Style="aaBb" />
     </PredefinedRule>
+    <UserRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" StaticnessKind="Static, Instance" AccessRight="Private" Description="Private Static Readonly">
+      <ElementKinds>
+        <Kind Name="FIELD" />
+      </ElementKinds>
+    </UserRule>
   </Naming2>
 </CodeStyleSettings>

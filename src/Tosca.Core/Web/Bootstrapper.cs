@@ -12,86 +12,86 @@
 // specific language governing permissions and limitations under the License.
 namespace Tosca.Core.Web
 {
-    using System;
-    using System.Web;
-    using System.Web.Mvc;
-    using Data;
-    using FluentNHibernate.Cfg;
-    using log4net;
-    using NHibernate;
-    using Settings;
-    using StructureMap;
-    using StructureMap.Attributes;
+	using System;
+	using System.Web;
+	using System.Web.Mvc;
+	using Data;
+	using FluentNHibernate.Cfg;
+	using log4net;
+	using NHibernate;
+	using Settings;
+	using StructureMap;
+	using StructureMap.Attributes;
 
-    public class Bootstrapper
-    {
-        private static readonly ILog _log = LogManager.GetLogger(typeof (Bootstrapper));
+	public class Bootstrapper
+	{
+		private static readonly ILog _log = LogManager.GetLogger(typeof (Bootstrapper));
 
-        public void Bootstrap()
-        {
-            BootstrapContainer();
+		public void Bootstrap()
+		{
+			BootstrapContainer();
 
-            ControllerBuilder.Current.SetControllerFactory(ObjectFactory.GetInstance<StructureMapControllerFactory>());
-        }
+			ControllerBuilder.Current.SetControllerFactory(ObjectFactory.GetInstance<StructureMapControllerFactory>());
+		}
 
 
-        private void BootstrapContainer()
-        {
-            try
-            {
-                InstanceScope contextScope = HttpContext.Current != null
-                                                 ? InstanceScope.HttpContext
-                                                 : InstanceScope.ThreadLocal;
+		private void BootstrapContainer()
+		{
+			try
+			{
+				InstanceScope contextScope = HttpContext.Current != null
+				                             	? InstanceScope.HttpContext
+				                             	: InstanceScope.ThreadLocal;
 
-                ObjectFactory.Configure(x =>
-                    {
-                        x.ForRequestedType<ISessionFactory>()
-                            .CacheBy(InstanceScope.Singleton)
-                            .TheDefault.Is.ConstructedBy(context => CreateSessionFactory());
+				ObjectFactory.Configure(x =>
+					{
+						x.ForRequestedType<ISessionFactory>()
+							.CacheBy(InstanceScope.Singleton)
+							.TheDefault.Is.ConstructedBy(context => CreateSessionFactory());
 
-                        x.ForRequestedType<ISqlConnectionFactory>()
-                            .CacheBy(InstanceScope.Singleton)
-                            .TheDefault.Is.OfConcreteType<SqlConnectionFactory>();
+						x.ForRequestedType<ISqlConnectionFactory>()
+							.CacheBy(InstanceScope.Singleton)
+							.TheDefault.Is.OfConcreteType<SqlConnectionFactory>();
 
-                        x.ForRequestedType<ISharedDataContext>()
-                            .CacheBy(contextScope)
-                            .TheDefault.Is.OfConcreteType<SqlSharedDataContext>();
+						x.ForRequestedType<ISharedDataContext>()
+							.CacheBy(contextScope)
+							.TheDefault.Is.OfConcreteType<SqlSharedDataContext>();
 
-                        x.ForRequestedType<IClientDataContext>()
-                            .CacheBy(contextScope)
-                            .TheDefault.Is.OfConcreteType<SqlClientDataContext>();
+						x.ForRequestedType<IClientDataContext>()
+							.CacheBy(contextScope)
+							.TheDefault.Is.OfConcreteType<SqlClientDataContext>();
 
-                        x.ForRequestedType<ISettingsProvider>()
-                            .TheDefault.Is.OfConcreteType<DatabaseSettingsProvider>();
+						x.ForRequestedType<ISettingsProvider>()
+							.TheDefault.Is.OfConcreteType<DatabaseSettingsProvider>();
 
-                        x.ForRequestedType<IClientSettings>()
-                            .TheDefault.Is.OfConcreteType<ClientSettings>();
+						x.ForRequestedType<IClientSettings>()
+							.TheDefault.Is.OfConcreteType<ClientSettings>();
 
-                        x.ForRequestedType<IDataSettings>()
-                            .TheDefault.Is.OfConcreteType<DataSettings>();
+						x.ForRequestedType<IDataSettings>()
+							.TheDefault.Is.OfConcreteType<DataSettings>();
 
-                        x.ForRequestedType<ISharedSettings>()
-                            .TheDefault.Is.OfConcreteType<SharedSettings>();
+						x.ForRequestedType<ISharedSettings>()
+							.TheDefault.Is.OfConcreteType<SharedSettings>();
 
-                        x.ForRequestedType<IObjectCache>()
-                            .CacheBy(InstanceScope.Singleton)
-                            .TheDefault.Is.OfConcreteType<AspNetCacheProvider>();
-                    });
+						x.ForRequestedType<IObjectCache>()
+							.CacheBy(InstanceScope.Singleton)
+							.TheDefault.Is.OfConcreteType<AspNetCacheProvider>();
+					});
 
-                if (_log.IsDebugEnabled)
-                    _log.Debug(ObjectFactory.WhatDoIHave());
-            }
-            catch (Exception ex)
-            {
-                LogManager.GetLogger(typeof (Bootstrapper)).Error("Failed to initialize container", ex);
-            }
-        }
+				if (_log.IsDebugEnabled)
+					_log.Debug(ObjectFactory.WhatDoIHave());
+			}
+			catch (Exception ex)
+			{
+				LogManager.GetLogger(typeof (Bootstrapper)).Error("Failed to initialize container", ex);
+			}
+		}
 
-        private static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently.Configure()
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Bootstrapper>())
-                .BuildSessionFactory();
-        }
-    }
+		private static ISessionFactory CreateSessionFactory()
+		{
+			return Fluently.Configure()
+				.Mappings(m => m.FluentMappings.AddFromAssemblyOf<Bootstrapper>())
+				.BuildSessionFactory();
+		}
+	}
 }

@@ -13,11 +13,20 @@
 namespace Tosca.Core.Web.Controllers
 {
     using System.Web.Mvc;
+    using Settings;
 
-    [HandleError]
-    public class HomeController : Controller
+	[HandleError]
+    public class HomeController : 
+		Controller
     {
-        public ActionResult Index()
+		private readonly ISharedSettings _settings;
+
+		public HomeController(ISharedSettings settings)
+    	{
+    		_settings = settings;
+    	}
+
+		public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
 

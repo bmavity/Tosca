@@ -20,7 +20,9 @@ namespace Tosca.Core.Data
         SqlDataContext,
         IClientDataContext
     {
-        private readonly ISqlConnectionFactory _connectionFactory;
+    	private const string ConnectionStringName = "Client";
+
+    	private readonly ISqlConnectionFactory _connectionFactory;
         private readonly IDataSettings _settings;
 
         public SqlClientDataContext(ISqlConnectionFactory connectionFactory,
@@ -34,7 +36,7 @@ namespace Tosca.Core.Data
 
         protected override SqlConnection GetConnection()
         {
-            return _connectionFactory.GetConnection("Client", _settings.ServerName, _settings.DatabaseName);
+            return _connectionFactory.GetConnection(ConnectionStringName, _settings.ServerName, _settings.DatabaseName);
         }
     }
 }
