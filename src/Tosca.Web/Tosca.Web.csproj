@@ -129,6 +129,8 @@
     <Content Include="connectionStrings.config" />
     <None Include="connectionStrings.config.template" />
     <Content Include="log4net.config" />
+    <Content Include="Views\Email\Render.aspx" />
+    <Content Include="Views\Email\Welcome.aspx" />
     <None Include="Web.config.template" />
   </ItemGroup>
   <ItemGroup>
