@@ -34,37 +34,36 @@ namespace Tosca.Core.Data
 
         private static string GetConnectionString(string connectionName)
         {
+			// maybe break this down into a chain of responsibility pattern
             ConnectionStringSettings connectionSettings = ConfigurationManager.ConnectionStrings[connectionName];
-            if (connectionSettings == null)
-            {
-                var map = new ExeConfigurationFileMap
-                    {
-                        ExeConfigFilename = Assembly.GetExecutingAssembly().Location + ".config"
-                    };
+        	if (connectionSettings == null)
+        		connectionSettings = GetConnectionSettingsFromAssemblyConfiguration(connectionName);
 
-                _log.InfoFormat("Using Configuration File: {0}", map.ExeConfigFilename);
-
-                Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-
-                connectionSettings = config.ConnectionStrings.ConnectionStrings[connectionName];
-            }
-
-            if (connectionSettings == null)
+        	if (connectionSettings == null)
                 throw new ConfigurationErrorsException("There are no configuration string configured");
 
-            string connectionString = connectionSettings.ConnectionString;
-
-            return connectionString;
+        	return connectionSettings.ConnectionString;
         }
 
-        private static string GetConnectionString(string connectionName, string serverName, string databaseName)
-        {
-            string connectionString = GetConnectionString(connectionName);
-            connectionString = connectionString
-                .Replace("Server=(local)", "Server=" + serverName)
-                .Replace("Database=Tosca", "Database=" + databaseName);
+    	private static ConnectionStringSettings GetConnectionSettingsFromAssemblyConfiguration(string connectionName)
+    	{
+    		var map = new ExeConfigurationFileMap
+    			{
+    				ExeConfigFilename = Assembly.GetExecutingAssembly().Location + ".config"
+    			};
 
-            return connectionString;
+    		_log.InfoFormat("Using Configuration File: {0}", map.ExeConfigFilename);
+
+    		Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+
+    		return config.ConnectionStrings.ConnectionStrings[connectionName];
+    	}
+
+    	private static string GetConnectionString(string connectionName, string serverName, string databaseName)
+        {
+    		return GetConnectionString(connectionName)
+            	.Replace("Server=(local)", "Server=" + serverName)
+            	.Replace("Database=Tosca", "Database=" + databaseName);
         }
 
         private static SqlConnection CreateConnection(string connectionString)

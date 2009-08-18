@@ -27,15 +27,26 @@ namespace Tosca.Core.Web
 	{
 		private static readonly ILog _log = LogManager.GetLogger(typeof (Bootstrapper));
 
-		public void Bootstrap()
+		public static void Bootstrap()
 		{
 			BootstrapContainer();
 
 			ControllerBuilder.Current.SetControllerFactory(ObjectFactory.GetInstance<StructureMapControllerFactory>());
+
+			BootstrapServiceBus();
+
+			ActorBootstrapper.Bootstrap(ObjectFactory.GetInstance<IContainer>());
 		}
 
+		private static void BootstrapServiceBus()
+		{
+			ObjectFactory.Configure(x =>
+				{
+					x.AddRegistry(new WebRegistry());
+				});
+		}
 
-		private void BootstrapContainer()
+		private static void BootstrapContainer()
 		{
 			try
 			{

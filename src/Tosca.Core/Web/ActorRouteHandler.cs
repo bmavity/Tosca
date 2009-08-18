@@ -10,10 +10,31 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Tosca.Core.Messages
+namespace Tosca.Core.Web
 {
-	public class RequestReservation : 
-		AbstractReservationMessage
+	using System;
+	using System.Web;
+	using System.Web.Routing;
+	using Magnum.Actors;
+	using StructureMap;
+
+	public class ActorRouteHandler :
+		IRouteHandler
 	{
-    }
+		private readonly IContainer _container;
+		private readonly Type _type;
+
+		public ActorRouteHandler(IContainer container, Type type)
+		{
+			_container = container;
+			_type = type;
+		}
+
+		public IHttpHandler GetHttpHandler(RequestContext requestContext)
+		{
+			return _container
+				.With<Func<AsyncHttpActor>>(() => (AsyncHttpActor) _container.GetInstance(_type))
+				.GetInstance<AsyncHttpActorHandler>();
+		}
+	}
 }

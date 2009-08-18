@@ -86,19 +86,22 @@ namespace Tosca.Core.Web.HttpModules
             HttpContext context = HttpContext.Current;
 
             Stopwatch stopwatch = ((Stopwatch) context.Items[_requestStopwatchKey]);
-            stopwatch.Stop();
+			if (stopwatch != null)
+			{
+				stopwatch.Stop();
 
-            DateTime startedAt = ((DateTime) context.Items[_requestStartKey]);
+				DateTime startedAt = ((DateTime) context.Items[_requestStartKey]);
 
-            string url = context.Request.RawUrl;
+				string url = context.Request.RawUrl;
 
-            ThreadContext.Properties[LogRequestDurationKey] = stopwatch.ElapsedMilliseconds.ToString();
-            ThreadContext.Properties[LogRequestStartedAtKey] = startedAt;
-            ThreadContext.Properties[LogRequestUrlKey] = url;
+				ThreadContext.Properties[LogRequestDurationKey] = stopwatch.ElapsedMilliseconds.ToString();
+				ThreadContext.Properties[LogRequestStartedAtKey] = startedAt;
+				ThreadContext.Properties[LogRequestUrlKey] = url;
 
-            _log.InfoFormat("{0} {1} {2} {3}", startedAt.ToString("yyyy-MM-dd HH:mm:ss.fff"), stopwatch.ElapsedMilliseconds, QueryCount, url);
+				_log.InfoFormat("{0} {1} {2} {3}", startedAt.ToString("yyyy-MM-dd HH:mm:ss.fff"), stopwatch.ElapsedMilliseconds, QueryCount, url);
+			}
 
-            ResetLogThreadContext();
+        	ResetLogThreadContext();
         }
 
         private static void ResetLogThreadContext()

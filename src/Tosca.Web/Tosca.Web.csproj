@@ -94,6 +94,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Reservation.asmx.cs">
+      <DependentUpon>Reservation.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
@@ -129,6 +133,7 @@
     <Content Include="connectionStrings.config" />
     <None Include="connectionStrings.config.template" />
     <Content Include="log4net.config" />
+    <Content Include="Services\Reservation.asmx" />
     <Content Include="Views\Email\Render.aspx" />
     <Content Include="Views\Email\Welcome.aspx" />
     <None Include="Web.config.template" />

@@ -12,8 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace Tosca.Core.Messages
 {
-	public class RequestReservation : 
-		AbstractReservationMessage
+	public class SignIn
 	{
-    }
+		public string Username { get; set; }
+		public string Password { get; set; }
+	}
 }
