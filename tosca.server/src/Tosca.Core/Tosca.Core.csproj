@@ -99,14 +99,14 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="Components\Reservations\ReservationDetails.cs" />
-    <Compile Include="Components\Reservations\Services\IReservationService.cs" />
-    <Compile Include="Components\Reservations\Services\ReservationService.cs" />
-    <Compile Include="Components\SagaClassMapBase.cs" />
-    <Compile Include="Messages\AbstractReservationMessage.cs" />
-    <Compile Include="Messages\ReservationAccepted.cs" />
-    <Compile Include="Messages\RequestReservation.cs" />
-    <Compile Include="Components\Reservations\Sagas\MakeReservation.cs" />
+    <Compile Include="Reservations\ReservationDetails.cs" />
+    <Compile Include="Reservations\Services\IReservationService.cs" />
+    <Compile Include="Reservations\Services\ReservationService.cs" />
+    <Compile Include="SagaClassMapBase.cs" />
+    <Compile Include="Reservations\Messages\AbstractReservationMessage.cs" />
+    <Compile Include="Reservations\Messages\ReservationAccepted.cs" />
+    <Compile Include="Reservations\Messages\RequestReservation.cs" />
+    <Compile Include="Reservations\Sagas\MakeReservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
