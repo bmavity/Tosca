@@ -1,6 +1,0 @@
-<Modules>
-  <Module PersistentId="A863EBC9-772C-4E62-AF74-6E503CA0EDB7" ModuleId="Tosca.Web" />
-  <Module PersistentId="4F368DD4-85AB-4BF4-9A65-04659C3DB9F8" ModuleId="Tosca.Core" />
-  <Module PersistentId="F13EA649-7398-4D30-B717-ACAC4C70F363" ModuleId="Tosca.Core.Tests" />
-  <Module PersistentId="B3F8D2C6-0C44-4446-8B08-3242299BE790" ModuleId="Tosca.ReservationService" />
-</Modules>
