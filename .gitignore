@@ -24,7 +24,7 @@ _ReSharper*
 TestResult.xml
 submit.xml
 src/tests/*
-tests/*
+**/tests/*
 SolutionVersion.cs
 gems/lib/**/*
 build
