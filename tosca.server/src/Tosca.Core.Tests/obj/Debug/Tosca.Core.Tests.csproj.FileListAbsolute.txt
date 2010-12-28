@@ -27,7 +27,7 @@ C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\bin\AutoTest.Net\FluentNH
 C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\bin\AutoTest.Net\Iesi.Collections.xml
 C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\bin\AutoTest.Net\NHibernate.Linq.xml
 C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\obj\Debug\ResolveAssemblyReference.cache
-C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\obj\Debug\Tosca.Core.Tests.dll
-C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\obj\Debug\Tosca.Core.Tests.pdb
 C:\development\Tosca\tosca.server\tests\Tosca.Core.Tests.dll
 C:\development\Tosca\tosca.server\tests\Tosca.Core.Tests.pdb
+C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\obj\Debug\Tosca.Core.Tests.dll
+C:\development\Tosca\tosca.server\src\Tosca.Core.Tests\obj\Debug\Tosca.Core.Tests.pdb

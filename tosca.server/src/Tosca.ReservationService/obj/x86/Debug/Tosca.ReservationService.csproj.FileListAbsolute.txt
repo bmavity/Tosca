@@ -3,3 +3,5 @@ C:\development\Tosca\tosca.server\src\Tosca.ReservationService\bin\AutoTest.Net\
 C:\development\Tosca\tosca.server\src\Tosca.ReservationService\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\development\Tosca\tosca.server\src\Tosca.ReservationService\obj\x86\Debug\Tosca.ReservationService.exe
 C:\development\Tosca\tosca.server\src\Tosca.ReservationService\obj\x86\Debug\Tosca.ReservationService.pdb
+C:\development\Tosca\tosca.server\src\Tosca.ReservationService\bin\Debug\Tosca.ReservationService.exe
+C:\development\Tosca\tosca.server\src\Tosca.ReservationService\bin\Debug\Tosca.ReservationService.pdb

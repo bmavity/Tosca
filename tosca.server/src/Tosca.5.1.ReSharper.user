@@ -7,8 +7,18 @@
     </boolean>
   </SettingsComponent>
   <RecentFiles>
-    <RecentFiles />
-    <RecentEdits />
+    <RecentFiles>
+      <File id="4F368DD4-85AB-4BF4-9A65-04659C3DB9F8/d:Messages/f:ReservationAccepted.cs" caret="0" fromTop="0" />
+      <File id="4F368DD4-85AB-4BF4-9A65-04659C3DB9F8/d:Messages/f:RequestReservation.cs" caret="0" fromTop="0" />
+      <File id="4F368DD4-85AB-4BF4-9A65-04659C3DB9F8/d:Messages/f:AbstractReservationMessage.cs" caret="0" fromTop="0" />
+      <File id="4F368DD4-85AB-4BF4-9A65-04659C3DB9F8/d:Components/d:Reservations/d:Services/f:IReservationService.cs" caret="0" fromTop="0" />
+      <File id="4F368DD4-85AB-4BF4-9A65-04659C3DB9F8/d:Components/d:Reservations/d:Services/f:ReservationService.cs" caret="0" fromTop="0" />
+      <File id="4F368DD4-85AB-4BF4-9A65-04659C3DB9F8/d:Components/d:Reservations/d:Sagas/f:MakeReservation.cs" caret="0" fromTop="0" />
+      <File id="B3F8D2C6-0C44-4446-8B08-3242299BE790/f:Program.cs" caret="0" fromTop="0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="B3F8D2C6-0C44-4446-8B08-3242299BE790/f:Program.cs" caret="0" fromTop="0" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />

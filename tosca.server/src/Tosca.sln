@@ -5,20 +5,48 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tosca.Core", "Tosca.Core\To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tosca.Core.Tests", "Tosca.Core.Tests\Tosca.Core.Tests.csproj", "{F13EA649-7398-4D30-B717-ACAC4C70F363}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tosca.ReservationService", "Tosca.ReservationService\Tosca.ReservationService.csproj", "{B3F8D2C6-0C44-4446-8B08-3242299BE790}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4F368DD4-85AB-4BF4-9A65-04659C3DB9F8}.Release|x86.ActiveCfg = Release|Any CPU
 		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F13EA649-7398-4D30-B717-ACAC4C70F363}.Release|x86.ActiveCfg = Release|Any CPU
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Debug|x86.ActiveCfg = Debug|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Debug|x86.Build.0 = Debug|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Release|Any CPU.ActiveCfg = Release|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Release|x86.ActiveCfg = Release|x86
+		{B3F8D2C6-0C44-4446-8B08-3242299BE790}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
