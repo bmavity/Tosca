@@ -42,6 +42,9 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(params[:reservation])
 
+    #put message code here
+    #bus.send('amqp://localhost/reservation', some_object)
+
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to(@reservation, :notice => 'Reservation was successfully created.') }

@@ -10,13 +10,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101114181619) do
+ActiveRecord::Schema.define(:version => 20110101225511) do
 
-  create_table "reservations", :force => true do |t|
-    t.string   "name"
-    t.integer  "number_in_party"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "reservations" because of following StandardError
+#   Unknown type 'bool' for column 'confirmed'
 
 end

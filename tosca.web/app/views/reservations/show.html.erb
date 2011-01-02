@@ -10,6 +10,10 @@
   <%= @reservation.number_in_party %>
 </p>
 
+<p>
+  <b>Confirmed:</b>
+  <%= @reservation.confirmed %>
+</p>
 
 <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
 <%= link_to 'Back', reservations_path %>
