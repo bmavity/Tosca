@@ -1,6 +1,8 @@
 build_output/*
 code_drop/*
 
+.DS_Store
+
 **/*.suo
 **/**/*.suo
 **/*.user

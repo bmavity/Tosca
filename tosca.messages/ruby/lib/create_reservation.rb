@@ -1,8 +1,10 @@
 module Tosca
   module Messages
     class CreateReservation
-      #name
-      #number
+      attr_accessor :name
+      attr_accessor :number
+      
+      
     end
   end
 end
