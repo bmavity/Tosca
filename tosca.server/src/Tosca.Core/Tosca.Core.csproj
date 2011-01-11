@@ -69,14 +69,21 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\lib\FluentHNibernate\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Magnum">
-      <HintPath>..\..\lib\Magnum\Magnum.dll</HintPath>
+    <Reference Include="Magnum, Version=0.1.0.329, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\MassTransit\Magnum.dll</HintPath>
     </Reference>
-    <Reference Include="Magnum.Infrastructure">
-      <HintPath>..\..\lib\Magnum\Magnum.Infrastructure.dll</HintPath>
+    <Reference Include="Magnum.ForNHibernate">
+      <HintPath>..\..\lib\MassTransit\Magnum.ForNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="MassTransit">
       <HintPath>..\..\lib\MassTransit\MassTransit.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit.StructureMapIntegration">
+      <HintPath>..\..\lib\MassTransit\MassTransit.StructureMapIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit.Transports.RabbitMq">
+      <HintPath>..\..\lib\MassTransit\MassTransit.Transports.RabbitMq.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\lib\FluentHNibernate\NHibernate.dll</HintPath>
@@ -86,6 +93,9 @@
     </Reference>
     <Reference Include="NHibernate.Linq">
       <HintPath>..\..\lib\FluentHNibernate\NHibernate.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -100,8 +110,10 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Reservations\ReservationDetails.cs" />
+    <Compile Include="Reservations\TableReservationService.cs" />
     <Compile Include="Reservations\Services\IReservationService.cs" />
     <Compile Include="Reservations\Services\ReservationService.cs" />
+    <Compile Include="Reservations\TableReservationServiceRegistry.cs" />
     <Compile Include="SagaClassMapBase.cs" />
     <Compile Include="Reservations\Messages\AbstractReservationMessage.cs" />
     <Compile Include="Reservations\Messages\ReservationAccepted.cs" />

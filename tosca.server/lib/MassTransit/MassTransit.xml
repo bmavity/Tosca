@@ -138,6 +138,91 @@
             Returns the number of SubTasks in the DistributedTask
             </summary>
         </member>
+        <member name="T:MassTransit.Serialization.IMessageSerializer">
+            <summary>
+            Message Serialization Methods 
+            </summary>
+        </member>
+        <member name="M:MassTransit.Serialization.IMessageSerializer.Serialize``1(System.IO.Stream,``0)">
+            <summary>
+            Serialize the message to the stream
+            </summary>
+            <typeparam name="T">The implicit type of the message to serialize</typeparam>
+            <param name="output">The stream where the output should be directed</param>
+            <param name="message">The message to serialize</param>
+        </member>
+        <member name="M:MassTransit.Serialization.IMessageSerializer.Deserialize(System.IO.Stream)">
+            <summary>
+            Deserialize a message from the stream
+            </summary>
+            <param name="input">The input stream where the serializer should read from</param>
+            <returns>An object that was deserialized</returns>
+        </member>
+        <member name="P:MassTransit.Serialization.CustomXmlMessageSerializer.Namespace">
+            <summary>
+              The namespace to place in outgoing XML.
+            </summary>
+        </member>
+        <member name="T:MassTransit.Serialization.MessageEnvelopeBase">
+            <summary>
+            A base message envelope for transports that support enveloped messages
+            This does not include the binary formatter, since it is retained for
+            legacy support as a pure object formatter with no envelope
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.SourceAddress">
+            <summary>
+            The source where the message originated
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.DestinationAddress">
+            <summary>
+            The destination where the message was originally sent
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.MessageId">
+            <summary>
+            A transport specific message identifier if appropriate
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.ConversationId">
+            <summary>
+            A higher-level conversation identifier that goes above any type of saga or request/response
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.CorrelationId">
+            <summary>
+            A correlation identifier for the message, if a saga or correlated message
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.ResponseAddress">
+            <summary>
+            The destination to use for replies to this message
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.FaultAddress">
+            <summary>
+            The destination to send any faults caused by this message
+            If not specified, faults are either sent to the ResponseAddress address
+            If this nor ResponseAddress is specified, faults are published
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.RetryCount">
+            <summary>
+            The number of times the message has been retried by a consumer
+            Starts at zero and is incremented every time the message is scheduled for retry
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.ExpirationTime">
+            <summary>
+            The message envelope base for the binary serializer?
+            </summary>
+        </member>
+        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.MessageType">
+            <summary>
+            The type of the message, including the full name and assembly
+            </summary>
+        </member>
         <member name="T:MassTransit.Saga.ISagaRepository`1">
             <summary>
             A saga repository is used by the service bus to dispatch messages to sagas
@@ -910,26 +995,6 @@
             <param name="value">The actual object to serialize</param>
             <returns>An enumeration of continuations to actually write the XML</returns>
         </member>
-        <member name="T:MassTransit.Serialization.IMessageSerializer">
-            <summary>
-            Message Serialization Methods 
-            </summary>
-        </member>
-        <member name="M:MassTransit.Serialization.IMessageSerializer.Serialize``1(System.IO.Stream,``0)">
-            <summary>
-            Serialize the message to the stream
-            </summary>
-            <typeparam name="T">The implicit type of the message to serialize</typeparam>
-            <param name="output">The stream where the output should be directed</param>
-            <param name="message">The message to serialize</param>
-        </member>
-        <member name="M:MassTransit.Serialization.IMessageSerializer.Deserialize(System.IO.Stream)">
-            <summary>
-            Deserialize a message from the stream
-            </summary>
-            <param name="input">The input stream where the serializer should read from</param>
-            <returns>An object that was deserialized</returns>
-        </member>
         <member name="P:MassTransit.Transports.CreateEndpointSettings.Address">
             <summary>
             The address of the endpoint
@@ -1117,66 +1182,6 @@
             </summary>
             <returns>The message object</returns>
         </member>
-        <member name="T:MassTransit.Serialization.MessageEnvelopeBase">
-            <summary>
-            A base message envelope for transports that support enveloped messages
-            This does not include the binary formatter, since it is retained for
-            legacy support as a pure object formatter with no envelope
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.SourceAddress">
-            <summary>
-            The source where the message originated
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.DestinationAddress">
-            <summary>
-            The destination where the message was originally sent
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.MessageId">
-            <summary>
-            A transport specific message identifier if appropriate
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.ConversationId">
-            <summary>
-            A higher-level conversation identifier that goes above any type of saga or request/response
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.CorrelationId">
-            <summary>
-            A correlation identifier for the message, if a saga or correlated message
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.ResponseAddress">
-            <summary>
-            The destination to use for replies to this message
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.FaultAddress">
-            <summary>
-            The destination to send any faults caused by this message
-            If not specified, faults are either sent to the ResponseAddress address
-            If this nor ResponseAddress is specified, faults are published
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.RetryCount">
-            <summary>
-            The number of times the message has been retried by a consumer
-            Starts at zero and is incremented every time the message is scheduled for retry
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.ExpirationTime">
-            <summary>
-            The message envelope base for the binary serializer?
-            </summary>
-        </member>
-        <member name="P:MassTransit.Serialization.MessageEnvelopeBase.MessageType">
-            <summary>
-            The type of the message, including the full name and assembly
-            </summary>
-        </member>
         <member name="M:MassTransit.ExtensionsToServiceBus.MakeRequest(MassTransit.IServiceBus,System.Action{MassTransit.IServiceBus})">
             <summary>
             Make a request to a service and wait for the response to be received, built
@@ -1311,7 +1316,7 @@
         </member>
         <member name="T:MassTransit.Serialization.XmlMessageEnvelope">
             <summary>
-            The envelope that is used to wrap messages serialized using Xml
+              The envelope that is used to wrap messages serialized using Xml
             </summary>
         </member>
         <member name="T:MassTransit.Serialization.DotNotXmlMessageSerializer">

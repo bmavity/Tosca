@@ -41,7 +41,7 @@ namespace Tosca.Core.Components.Reservations.Sagas
                         );
 
                     During(WaitingForAcceptance,
-                        When(WaitTimeExpired).And(x => x.Tag == RequestTimeout)
+                        When(WaitTimeExpired).Where(x => x.Tag == RequestTimeout)
                             .Then(s =>
                                 {
                                     // add audit event for failure, report reservation not accepted
@@ -73,7 +73,7 @@ namespace Tosca.Core.Components.Reservations.Sagas
     {
         public MakeReservationClassMap()
         {
-        	Map(x => x.Name).WithLengthOf(50);
+        	Map(x => x.Name).Length(50);
             Map(x => x.NumberOfGuests);
         }
     }

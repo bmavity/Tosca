@@ -1,5 +1,5 @@
-// Copyright 2007-2008 The Apache Software Foundation.
-//  
+// Copyright 2007-2010 The Apache Software Foundation.
+// 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 // this file except in compliance with the License. You may obtain a copy of the 
 // License at 
@@ -10,22 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Tosca.Core.Components
+namespace Tosca.Core.Reservations
 {
-    using FluentNHibernate.Mapping;
-    using Magnum.ForNHibernate.StateMachine;
-    using MassTransit.Saga;
-
-    public class SagaClassMapBase<T> :
-        ClassMap<T>
-        where T : SagaStateMachine<T>, ISaga
+    public class TableReservationService
     {
-        protected SagaClassMapBase()
+        public void Start()
         {
-            Id(x => x.CorrelationId);
-            Map(x => x.CurrentState)
-                .Access.ReadOnlyPropertyThroughCamelCaseField(Prefix.Underscore)
-                .CustomType<StateMachineUserType>();
+        }
+
+        public void Stop()
+        {
         }
     }
 }
