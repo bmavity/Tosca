@@ -42,6 +42,9 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(params[:reservation])
 
+    bus = get_bus
+    bus.publish(get_message(@reservation))
+    
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to(@reservation, :notice => 'Reservation was successfully created.') }

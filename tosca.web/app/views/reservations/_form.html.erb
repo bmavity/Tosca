@@ -19,6 +19,11 @@
     <%= f.label :number_in_party %><br />
     <%= f.text_field :number_in_party %>
   </div>
+  <div class="field">
+	<%= f.label :confirmed %><br />
+	<%= @reservation.confirmed %><br/>
+	<em style="color:#ccc;">this is updated through the service</em>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
