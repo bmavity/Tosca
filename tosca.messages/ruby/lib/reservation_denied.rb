@@ -1,7 +1,7 @@
 module Tosca
   module Messages
     class ReservationDenied
-      #name
+      attr_accessor :name
       #number
     end
   end
