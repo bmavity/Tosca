@@ -1,7 +1,7 @@
 module Tosca
   module Messages
     class ReservationConfirmed
-      #name
+      attr_accessor :name
       #count
     end
   end

@@ -13,7 +13,7 @@
 namespace Tosca.Core.Components
 {
     using FluentNHibernate.Mapping;
-    using Magnum.Infrastructure.StateMachine;
+    using Magnum.ForNHibernate.StateMachine;
     using MassTransit.Saga;
 
     public class SagaClassMapBase<T> :
@@ -24,8 +24,8 @@ namespace Tosca.Core.Components
         {
             Id(x => x.CorrelationId);
             Map(x => x.CurrentState)
-                .Access.AsReadOnlyPropertyThroughCamelCaseField(Prefix.Underscore)
-                .CustomTypeIs<StateMachineUserType>();
+                .Access.ReadOnlyPropertyThroughCamelCaseField(Prefix.Underscore)
+                .CustomType<StateMachineUserType>();
         }
     }
 }
