@@ -5,4 +5,4 @@ user : guest
 password : guest
 vdir : /
 insist : true
-queue : tosca.web.updater
+queue : tosca_web

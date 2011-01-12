@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sqlite3'
-require '../lib/masstransit'
+require 'masstransit'
 
 def process_message(msg)
   dbfile = '../tosca.web/db/development.sqlite3'
@@ -9,10 +9,10 @@ def process_message(msg)
 sql = <<SQL
   update reservations
   set confirmed = 'f'
-  where id = ?
+  where name = ?
 SQL
 
-  db.execute(sql, msg.id)
+  db.execute(sql, msg.name)
 end
 
 
@@ -21,7 +21,7 @@ conf = MassTransit.load_config('./host.yaml')
 bus = MassTransit::Bus.new(conf)
 
 #subscribe stuff
-bus.subscribe('MyMessage') do |msg|
+bus.subscribe('urn:messages:Tosca:Messages:ReservationConfirmed') do |msg|
   process_message msg
 end
 
