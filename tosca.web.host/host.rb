@@ -8,11 +8,11 @@ def process_message(msg)
 
 sql = <<SQL
   update reservations
-  set confirmed = 'f'
+  set confirmed = 't'
   where name = ?
 SQL
 
-  db.execute(sql, msg.name)
+  db.execute(sql, msg.Name)
 end
 
 
@@ -22,7 +22,12 @@ bus = MassTransit::Bus.new(conf)
 
 #subscribe stuff
 bus.subscribe('urn:messages:Tosca:Messages:ReservationConfirmed') do |msg|
+  puts '111111111111'
   process_message msg
 end
 
+bus.subscribe('Tosca.Messages.ReservationConfirmed, Tosca.Messages') do |msg|
+  puts '2222222222'
+  process_message msg
+end
 bus.start()
